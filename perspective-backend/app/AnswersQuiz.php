@@ -17,4 +17,12 @@ class AnswersQuiz extends Model
         'question_id' => 'required',
         'answer' => 'required'
     ];
+
+    public function question(){
+        return $this->belongsTo(Question::class);
+    }
+
+    public function quiz(){
+        return $this->belongsTo(Quiz::class);
+    }
 }
