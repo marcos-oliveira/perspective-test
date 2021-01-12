@@ -21,30 +21,42 @@ const useStyles = makeStyles((theme) => ({
 
 const PerspectiveTest = props => {
 
-  const [ questions, setQuestions ] = useState();
-  const [ msg, setMsg ] = useState();
+  const [ answers, setAnswers ] = useState();
   const [ error, setError ] = useState();
   const [ running, setRunning ] = useState(false);
+  const {setResult} = props;
   const classes = useStyles();
 
   const fetchQuestions = useCallback(() => {
     setRunning(true);
     setError(null);
-    fetch('http://perspective.localhost/api/questions')
+    fetch('http://perspective.localhost/api/questions', {
+      headers : { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+       }
+
+    })
       .then( response => {
         if (!response.ok) { throw response };
+        console.log(response)
         return response.json();
       })
       .then( data => {
         setRunning(false);
-        console.log(data);
-        // setQuestions(data);
+        let questions_answers = {email:'', questions: data.map(el => ({
+          'question_id':el.id,
+          'description':el.description,
+          'answer': null
+        }))};
+        setAnswers(questions_answers);
       } )
       .catch( error => {
         setRunning(false);
+        console.log(error);
         setError("Sorry, an unexpected error occurred");
       } );
-  }, [setRunning, setQuestions, setError]);
+  }, [setRunning, setAnswers, setError]);
 
   useEffect(() => {
     fetchQuestions();
@@ -54,10 +66,11 @@ const PerspectiveTest = props => {
     setError(null);
     const formData = new FormData();
     formData.append('email', answers.email);
-    // answered = answers.questions.map(element => {
-    //   'quiz_id': element.quiz_id
-    // });
-    formData.append('answers', answers.questions);
+    let answered = answers.questions.map(element => ({
+      ...element
+    }));
+    console.log('answers.questions', answers.questions, answered);
+    formData.append('answers', answered);
     console.log(formData);
     fetch('http://perspective.localhost/api/quiz', {
       method: 'POST',
@@ -73,7 +86,7 @@ const PerspectiveTest = props => {
       .catch( error => {
         setError("Sorry, an unexpected error occurred");
       } );
-  }, [setResult, setError]);
+  }, [setResult, setError, answers]);
 
   const handleClose = useCallback((event, reason) => {
     if (reason === 'clickaway') {
@@ -81,8 +94,7 @@ const PerspectiveTest = props => {
     }
 
     setError(null);
-    setMsg(null);
-  }, [setError, setMsg]);
+  }, [setError]);
 
   if(running){
     return <Box height="100%" display="flex" width="100%" bgcolor="grey.100"><Box m="auto"><CircularProgress/></Box></Box>;
@@ -90,20 +102,22 @@ const PerspectiveTest = props => {
 
   let alert = null;
   if(error){
+    console.log(error);
     alert = <div className={classes.root}>
-    <Snackbar open={error} autoHideDuration={6000} onClose={handleClose}>
+    <Snackbar open={error?true:false} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
           {error}
         </Alert>
       </Snackbar>
       </div>
   }
-  return <Content>
+  let c =  <Content>
     <Title />
-    <Survey questions={questions} save={save} setQuestions={setQuestions} />
+    <Survey answers={answers} save={save} setAnswers={setAnswers} />
     {alert}
   </Content>;
+  return c;
 }
 
 
-export default OnlineEditor;
+export default PerspectiveTest;

@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import PerspectiveTest from './containers/PerspectiveTest';
 import PerspectiveResult from './containers/PerspectiveResult';
+require('dotenv').config();
 
-const PerspectiveTest = props => {
+const App = props => {
   const [ result, setResult ] = useState();
   if(result){
-    <PerspectiveResult result={result} />
+    return <PerspectiveResult result={result} />
   }else{
-    <PerspectiveTest setResult={setResult} />
+    return <PerspectiveTest setResult={setResult} />
   }
 }
 
