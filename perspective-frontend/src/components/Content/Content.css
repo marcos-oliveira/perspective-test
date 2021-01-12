@@ -1,0 +1,15 @@
+.Content {
+    position: absolute;
+    width: 1280px;
+    height: 1574px;
+    left: 0px;
+    top: 62px;
+    
+    background: #FFFFFF;
+}
+
+@media (min-width: 600px) {
+    .Auth {
+        width: 500px;
+    }
+}

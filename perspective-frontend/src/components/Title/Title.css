@@ -1,0 +1,8 @@
+.Title {
+}
+
+@media (min-width: 600px) {
+    .Auth {
+        width: 500px;
+    }
+}
