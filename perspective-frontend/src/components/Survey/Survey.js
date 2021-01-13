@@ -11,7 +11,7 @@ const Survey = props =>  {
     const changeAnswer = useCallback((question_id, value) => {
         let new_questions = answers.questions.map(question => {
             if(question.question_id === question_id){
-                return {...question, value:value};
+                return {...question, answer:value};
             }
             return question;
         });

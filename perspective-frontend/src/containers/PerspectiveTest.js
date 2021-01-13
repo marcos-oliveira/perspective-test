@@ -66,12 +66,10 @@ const PerspectiveTest = props => {
     setError(null);
     const formData = new FormData();
     formData.append('email', answers.email);
-    let answered = answers.questions.map(element => ({
-      ...element
-    }));
-    console.log('answers.questions', answers.questions, answered);
-    formData.append('answers', answered);
-    console.log(formData);
+    answers.questions.forEach((element, i) => {
+      formData.append(`answers[${i}][question_id]`, element.question_id);
+      formData.append(`answers[${i}][answer]`, element.answer);
+    });
     fetch('http://perspective.localhost/api/quiz', {
       method: 'POST',
       body: formData
@@ -102,7 +100,6 @@ const PerspectiveTest = props => {
 
   let alert = null;
   if(error){
-    console.log(error);
     alert = <div className={classes.root}>
     <Snackbar open={error?true:false} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
