@@ -1,0 +1,101 @@
+.Survey {
+    position: absolute;
+    width: 740px;
+    height: 1276px;
+    left: 270px;
+    top: 199px;
+}
+
+.block {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.question {
+    width: 521px;
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    margin: auto;
+    text-align: center;
+    /* gray-700 */
+    color: #495057;
+}
+
+.radios {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.field {
+    width: 570px;
+    text-align: center;
+    line-height: 19px;
+    margin: auto;
+}
+
+.field_label {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 5px;
+}
+
+.disagree {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: right;
+    color: #FA4344;
+}
+
+.agree {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 19px;
+    color: #00A079;
+}
+
+.email {
+    width: 570px;
+}
+
+.email::placeholder {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    /* identical to box height */
+    color: #E5E5E5;
+}
+
+.block_btn{
+    background: #FFFFFF;
+    width: 100%;
+    text-align: center;
+}
+
+.btn{
+    margin:auto;
+    margin: 20px;
+    font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+text-align: center;
+
+background: #3D59FA;
+border-radius: 3px;
+width: 155px;
+height: 36px;
+
+color: #FFFFFF;
+
+}

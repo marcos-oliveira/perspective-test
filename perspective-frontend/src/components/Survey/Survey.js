@@ -1,5 +1,5 @@
-import React,{useCallback} from 'react';
-import classes from './Survey.css';
+import React, { useCallback } from 'react';
+import classes from './survey.module.css';
 
 const Survey = props =>  {
     const {answers, setAnswers, save}  = props;
@@ -26,11 +26,13 @@ const Survey = props =>  {
                 {el.description}
                 </div>
                 <div className={classes.field}>
-                    <div className={classes.agree}></div>
+                    <div className={classes.disagree+" "+classes.field_label}>Disagree</div>
+                <div className={classes.radios}>
                     {[1,2,3,4,5,6,7].map(value => (
                         <input key={el.question_id+'-'+value} type="radio" name={'question_'+el.question_id} value={value} onChange={() => changeAnswer(el.question_id, value)}  />
                     ))}
-                    <div className={classes.agree}></div>
+                    </div>
+                    <div className={classes.agree+" "+classes.field_label}>Agree</div>
                 </div>
             </div>
         ))
@@ -42,11 +44,11 @@ const Survey = props =>  {
             Your Email
             </div>
             <div className={classes.field}>
-            <input type='text' onChange={(e) => changeEmail(e.target.value)} />
+            <input type='text' className={classes.email} placeholder="you@example.com" onChange={(e) => changeEmail(e.target.value)} />
             </div>
         </div>
-        <div className={classes.block}>
-            <input type="button" value="Save & Continue" onClick={save} />
+        <div className={classes.block_btn}>
+            <input type="button" class={classes.btn} value="Save & Continue" onClick={save} />
         </div>
     </div>;
 }

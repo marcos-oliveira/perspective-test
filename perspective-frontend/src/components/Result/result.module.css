@@ -1,0 +1,49 @@
+.Result {
+
+position: absolute;
+width: 1179px;
+height: 270px;
+left: 48px;
+top: 62px;
+
+background: #FFFFFF;
+border: 1px solid #E5E5E5;
+box-sizing: border-box;
+border-radius: 5px;
+}
+
+.Block1{position: absolute;
+width: 500.71px;
+height: 60.75px;
+left: 91px;
+top: 166px;
+
+}
+
+.Block2{
+    position: absolute;
+width: 545.83px;
+height: 125.36px;
+left: 637.5px;
+top: 134.32px;
+}
+
+.Titleresult{
+    font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 26px;
+line-height: 30px;
+
+color: #113264;
+}
+
+.Textresult{
+    font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 16px;
+line-height: 19px;
+
+color: #343A40;
+}

@@ -82,7 +82,13 @@ const PerspectiveTest = props => {
         setResult(dados);
       } )
       .catch( error => {
-        setError("Sorry, an unexpected error occurred");
+          error.json()
+        .then(error_msg =>{
+          setError(error_msg.message);
+          }
+        ).catch(error => {
+          setError("Sorry, an unexpected error occurred");
+        } )
       } );
   }, [setResult, setError, answers]);
 

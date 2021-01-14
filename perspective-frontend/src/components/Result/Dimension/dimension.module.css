@@ -1,0 +1,41 @@
+.row {
+    width: 545.83px;
+    height: 18.32px;
+    padding-top: 10px;
+}
+
+.active{
+    width: 110px;
+    height: 14.46px;
+    border-radius: 3px;
+    background: #A920CB;
+}
+
+.inactive{
+    width: 110px;
+    height: 14.46px;
+border-radius: 3px;
+background: #E9ECEF;
+}
+
+.label{
+font-family: Roboto;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+/* or 20px */
+    width: 145px;
+
+
+color: #878787;
+}
+
+.labelleft{
+    padding-left: 20px;
+}
+
+
+.block_info {
+    display: inline-block;
+    vertical-align: middle;
+}

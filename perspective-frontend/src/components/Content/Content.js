@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './Content.css';
+import classes from './content.module.css';
 
 const Content = props =>  {
     return <div className={classes.Content}>

@@ -1,0 +1,28 @@
+.Titledoc{
+    position: absolute;
+    left: 5.86%;
+    top: 4.94%;
+
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 21px;
+    
+    /* #113264 */
+    
+    color: #113264;
+}
+
+.Textdoc{
+    position: absolute;
+left: 5.86%;
+top: 6.78%;
+    font-family: Roboto;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 19px;
+
+color: #495057;
+}
