@@ -26,8 +26,22 @@ class QuizController extends Controller
             $response['success'] = false;
             return response()->json($response, 400);
         }
-        //TODO if some question is not answered
         $request_data = $request->all();
+        $answers_ok = true;
+        if(isset($request_data['answers']) || count($request_data['answers'])>0){
+            foreach($request_data['answers'] as $answer){
+                if(!isset($answer['answer']) ||!$answer['answer'] || $answer['answer']==="null" ||!is_numeric($answer['answer'])){
+                    $answers_ok = false;
+                }
+            }
+        }else{
+            $answers_ok = false;
+        }
+        if(!$answers_ok){
+            $response['message'] = 'All of the questions should be answered!';
+            $response['success'] = false;
+            return response()->json($response, 400);
+        }
 
         try {
             DB::beginTransaction();
@@ -86,7 +100,7 @@ class QuizController extends Controller
             foreach($mbti as $mbti_dimension){
                 $result .= trim($mbti_dimension['score']<=0?$mbti_dimension['left_initial']:$mbti_dimension['right_initial']);
             }
-            $response = ['email'=>$email, 'result'=>$result, 'mbti'=>$mbti];
+            $response = ['email'=>$email, 'result'=>$result, 'mbti'=>array_values($mbti)];
             return response()->json($response, 201);
         }else{
             return response()->json(['message' => 'Not Found'], 400);
