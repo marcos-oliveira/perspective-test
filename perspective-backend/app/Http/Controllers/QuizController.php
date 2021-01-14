@@ -18,14 +18,6 @@ class QuizController extends Controller
 
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email|unique:quiz'
-        ]);
-        if ($validator->fails()) {
-            $response['message'] = $validator->messages();
-            $response['success'] = false;
-            return response()->json($response, 400);
-        }
         $request_data = $request->all();
         $answers_ok = true;
         if(isset($request_data['answers']) || count($request_data['answers'])>0){
@@ -39,6 +31,14 @@ class QuizController extends Controller
         }
         if(!$answers_ok){
             $response['message'] = 'All of the questions should be answered!';
+            $response['success'] = false;
+            return response()->json($response, 400);
+        }
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:quiz'
+        ]);
+        if ($validator->fails()) {
+            $response['message'] = "Invalid Email!";
             $response['success'] = false;
             return response()->json($response, 400);
         }
