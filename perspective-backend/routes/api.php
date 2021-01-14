@@ -16,10 +16,12 @@ use Illuminate\Http\Request;
 Route::get('/questions', 'QuestionController@index');
 Route::post('/quiz', 'QuizController@store');
 
-### "Technical user story"
-Route::get('/quiz', 'QuizController@index');
-Route::get('/quiz/{email}', 'QuizController@show');
-Route::get('/mbti/{email}', 'QuizController@mbti')->name('api.mbti');
+### "Technical user story" (permission validation middleware)
+Route::middleware('techuser:api')->group(function () {
+    Route::get('/quiz', 'QuizController@index');
+    Route::get('/quiz/{email}', 'QuizController@show');
+    Route::get('/mbti/{email}', 'QuizController@mbti')->name('api.mbti');
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
