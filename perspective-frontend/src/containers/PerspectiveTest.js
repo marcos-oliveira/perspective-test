@@ -30,7 +30,7 @@ const PerspectiveTest = props => {
   const fetchQuestions = useCallback(() => {
     setRunning(true);
     setError(null);
-    fetch('http://perspective.localhost/api/questions', {
+    fetch(process.env.REACT_APP_SERVER_API+'/questions', {
       headers : { 
         'Content-Type': 'application/json',
         'Accept': 'application/json'
@@ -39,7 +39,6 @@ const PerspectiveTest = props => {
     })
       .then( response => {
         if (!response.ok) { throw response };
-        console.log(response)
         return response.json();
       })
       .then( data => {
@@ -53,7 +52,6 @@ const PerspectiveTest = props => {
       } )
       .catch( error => {
         setRunning(false);
-        console.log(error);
         setError("Sorry, an unexpected error occurred");
       } );
   }, [setRunning, setAnswers, setError]);
@@ -70,7 +68,7 @@ const PerspectiveTest = props => {
       formData.append(`answers[${i}][question_id]`, element.question_id);
       formData.append(`answers[${i}][answer]`, element.answer);
     });
-    fetch('http://perspective.localhost/api/quiz', {
+    fetch(process.env.REACT_APP_SERVER_API+'/quiz', {
       method: 'POST',
       body: formData
     })

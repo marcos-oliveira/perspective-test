@@ -1,0 +1,12 @@
+FROM node:alpine
+
+WORKDIR /app
+
+COPY package.json /app
+
+RUN yarn install
+
+COPY . /app
+COPY /app/.env.example /app/.env
+
+CMD ["yarn", "run", "start"]
