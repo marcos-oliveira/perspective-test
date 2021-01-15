@@ -25,28 +25,27 @@ root /var/www/perspective-backend/public;<br />
 5. Open your hosts file (/etc/hosts on linux) in a text editor and add following add the end:<br />
 127.0.0.1 perspective.shift<br />
 <br />
-6. Access phpMyAdmin in the browser on http:localhost:8081<br />
-    - Credentials<br />
-        - server: mysql<br />
-        - username: root<br />
-        - password: root<br />
-<br />
-    - create the database with name perspective.<br />
+6. Access phpMyAdmin in the browser on http:localhost:8081
+  - Credentials
+    - server: mysql
+    - username: root
+    - password: root
+  - create the database with name perspective.<br />
 <br />
 7. Go to perspective-backend folder and create the .env file by copying .env.example:<br />
-    cp .env.example .env<br />
+  cp .env.example .env<br />
 <br />
 8. Go to laradock folder and copy a .env file<br />
-cp env-example .env<br />
+  cp env-example .env<br />
 <br />
 9. Build the containers with the following command:<br />
-    docker-compose up -d nginx mysql phpmyadmin<br />
+  docker-compose up -d nginx mysql phpmyadmin<br />
 <br />
 10. Start workspace and run migrate with:<br />
 <br />
-    docker-compose exec workspace bash<br />
-    php artisan migrate<br />
+  docker-compose exec workspace bash<br />
+  php artisan migrate<br />
 <br />
 ### Project Frontend configuration<br />
-GO to frontend folder perspective-frontend<br />
-RUN: docker-compose up<br />
+  GO to frontend folder perspective-frontend<br />
+  RUN: docker-compose up<br />
