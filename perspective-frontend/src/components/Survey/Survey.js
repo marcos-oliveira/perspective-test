@@ -48,7 +48,7 @@ const Survey = props =>  {
             </div>
         </div>
         <div className={classes.block_btn}>
-            <input type="button" class={classes.btn} value="Save & Continue" onClick={save} />
+            <input type="button" className={classes.btn} value="Save & Continue" onClick={save} />
         </div>
     </div>;
 }

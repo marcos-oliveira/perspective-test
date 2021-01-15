@@ -30,8 +30,9 @@ const PerspectiveTest = props => {
   const fetchQuestions = useCallback(() => {
     setRunning(true);
     setError(null);
-    fetch(process.env.REACT_APP_SERVER_API+'/questions', {
+    fetch('http://perspective.shift/api/questions', {
       headers : { 
+        "access-control-allow-origin" : "*",
         'Content-Type': 'application/json',
         'Accept': 'application/json'
        }
@@ -68,7 +69,7 @@ const PerspectiveTest = props => {
       formData.append(`answers[${i}][question_id]`, element.question_id);
       formData.append(`answers[${i}][answer]`, element.answer);
     });
-    fetch(process.env.REACT_APP_SERVER_API+'/quiz', {
+    fetch('http://perspective.shift/api/quiz', {
       method: 'POST',
       body: formData
     })
