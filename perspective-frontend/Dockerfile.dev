@@ -6,7 +6,7 @@ COPY package.json /app
 
 RUN yarn install
 
+COPY .env.example .env
 COPY . /app
-COPY /app/.env.example /app/.env
 
 CMD ["yarn", "run", "start"]
