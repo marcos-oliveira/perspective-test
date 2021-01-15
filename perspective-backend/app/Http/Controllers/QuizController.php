@@ -38,7 +38,7 @@ class QuizController extends Controller
             'email' => 'required|email|unique:quiz'
         ]);
         if ($validator->fails()) {
-            $response['message'] = "Invalid Email!";
+            $response['message'] = $validator->errors()->get('email');
             $response['success'] = false;
             return response()->json($response, 400);
         }
