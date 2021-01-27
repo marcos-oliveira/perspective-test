@@ -55,6 +55,26 @@ docker-compose up -d nginx mysql phpmyadmin
 ```
 11. The Backend routes should be accessible from http://perspective.shift/api/(resource)
 
+
+```
+**Troubles connecting to the DB
+
+I didn't, but if you have a problem with the mysql version, downgrade as follows:
+
+a. Include MYSQL_VERSION=5.7 in the laradock env file, and change the value of DATA_PATH_HOST as follows:
+
+    DATA_PATH_HOST=./data
+
+b. Proceed the downgrade as below:
+
+    docker-compose stop mysql # Delete old database data
+    rm -rf laradock/data/mysql # ! Pay attention to restart the docker application, and then build a new mysql
+    docker-compose build mysql
+
+c. Run the containers and recreated the database as in the README file, from step 8 on.
+```
+
+
 ### Run Project Frontend
   GO to frontend folder perspective-frontend and run:
 ```
